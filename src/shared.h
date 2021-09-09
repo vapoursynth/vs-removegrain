@@ -17,8 +17,8 @@ http://sam.zoy.org/wtfpl/COPYING for more details.
 #ifndef SHARED_H
 #define SHARED_H
 
-#include "VapourSynth4.h"
-#include "VSHelper4.h"
+#include <VapourSynth4.h>
+#include <VSHelper4.h>
 #include <stdint.h>
 #include <algorithm>
 #include <cstdlib>
