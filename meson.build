@@ -1,8 +1,8 @@
-project('removegrain', 'c', 'cpp',
+project('removegrain', 'cpp',
   version : '1',
   default_options : ['warning_level=3'])
 
-add_project_arguments('-ffast-math', language : 'c')
+add_project_arguments('-ffast-math', language : 'cpp')
 
 sources = [
      'src/clense.cpp',
@@ -14,6 +14,14 @@ sources = [
 ]
 
 vapoursynth_dep = dependency('vapoursynth', version: '>=55').partial_dependency(compile_args : true, includes : true)
+
+if host_machine.cpu_family().startswith('x86')
+  add_project_arguments('-DVS_TARGET_CPU_X86', '-mfpmath=sse', '-msse2', language: 'cpp')
+endif
+
+if host_machine.system() == 'windows'
+  add_project_link_arguments('-static', language: 'cpp')
+endif
 
 deps = [vapoursynth_dep]
 
